@@ -3,7 +3,7 @@ import ClientLayout from "../components/layouts/ClientLayout";
 import HomePage from "../components/common/HomePage";
 import LoginForm from "../components/auth/LoginForm";
 import RegisterForm from "../components/auth/RegisterForm";
-
+import ForgotPasswordForm from '../components/auth/ForgotPasswordForm';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -23,6 +23,13 @@ const router = createBrowserRouter([
     path: "/register",
     element: <RegisterForm />,
   },
+ feature/login
+
+  {
+  path: "/forgot-password",
+  element: <ForgotPasswordForm />,
+},
+ develop
 ]);
 
 export default router;

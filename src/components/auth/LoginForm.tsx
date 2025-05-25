@@ -79,12 +79,24 @@ export default function LoginForm() {
               placeholder="********"
               className="w-full px-5 py-3 border border-gray-300 rounded-xl shadow-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-4 focus:ring-purple-400 focus:border-transparent"
             />
+ feature/login
+
+            <div className="text-right mt-1">
+  <a href="/forgot-password" className="text-sm text-blue-600 hover:underline">
+    Quên mật khẩu?
+  </a>
+</div>
+
+ develop
           </div>
           {error && <p className="text-red-500 text-sm mt-1">{error}</p>}
           <button
             type="submit"
             className="w-full py-3 mt-6 bg-gradient-to-r from-purple-700 via-pink-600 to-red-500 text-white font-semibold rounded-full shadow-lg hover:brightness-110 transition"
           >
+ feature/login
+            
+ develop
             Đăng nhập
           </button>
         </form>
