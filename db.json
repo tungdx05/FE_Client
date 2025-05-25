@@ -4,7 +4,7 @@
       "id": "1",
       "username": "dat123",
       "email": "dat@gmail.com",
-      "password_hash": "hashed_pwd",
+      "password": "123456",
       "first_name": "Dat",
       "last_name": "Nguyen",
       "phone_number": "0123456789",
@@ -15,7 +15,7 @@
       "updated_at": "2025-05-01T10:00:00Z"
     },
     {
-      "id": "55f5",
+      "id": "0eda",
       "fullname": "Đặng Xuân Tùng",
       "email": "tungdx50725@gmail.com",
       "password": "123456"
