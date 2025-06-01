@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 const HomePage: React.FC = () => {
   return (
@@ -8,11 +8,11 @@ const HomePage: React.FC = () => {
         <h1 className="text-5xl md:text-6xl font-extrabold text-gray-900 leading-tight mb-6">
           Chào mừng đến với <span className="text-purple-700">Slyout</span>
         </h1>
-        <p className="text-lg md:text-xl text-gray-600 mb-8">
+        {/* <p className="text-lg md:text-xl text-gray-600 mb-8">
           Đăng ký ngay để khám phá trải nghiệm tuyệt vời và sản phẩm chất lượng cùng chúng tôi.
-        </p>
+        </p> */}
 
-        <div className="flex justify-center space-x-6">
+        {/* <div className="flex justify-center space-x-6">
           <Link
             to="/register"
             className="px-6 py-3 bg-purple-700 text-white rounded-full font-semibold shadow-md hover:bg-purple-800 transition"
@@ -25,7 +25,7 @@ const HomePage: React.FC = () => {
           >
             Đăng nhập
           </Link>
-        </div>
+        </div> */}
       </div>
     </div>
   );
