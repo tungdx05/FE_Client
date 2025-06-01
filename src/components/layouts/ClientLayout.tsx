@@ -24,11 +24,16 @@ const ClientLayout: React.FC = () => {
     <div className="bg-white text-gray-800 min-h-screen flex flex-col">
       {/* Header */}
       <header className="shadow-md">
-        <div className="container mx-auto px-6 py-4 flex justify-between items-center">
-          <Link to="/" className="text-2xl font-bold text-purple-700">
-            Slyout
-          </Link>
-          <nav className="space-x-6 text-sm md:text-base">
+        <div className="container mx-auto px-6 py-4 grid grid-cols-3 items-center gap-x-8">
+          {/* Logo */}
+          <div>
+            <Link to="/" className="text-2xl font-bold text-purple-700">
+              Slyout
+            </Link>
+          </div>
+
+          {/* Navigation */}
+          <nav className="flex justify-center space-x-6 text-sm md:text-base">
             <Link to="/" className="hover:text-purple-700">
               Trang chủ
             </Link>
@@ -42,12 +47,18 @@ const ClientLayout: React.FC = () => {
               Liên hệ
             </Link>
           </nav>
-          <div className="flex items-center space-x-4">
+
+          {/* User menu */}
+          <div className="flex justify-end items-center space-x-4 pl-6">
             {user ? (
               <>
-                <span className="text-purple-700 font-semibold">
+                <Link
+                  to="/profile"
+                  className="px-4 py-2 border border-green-600 text-green-600 rounded-full hover:bg-green-100 transition"
+                >
                   Xin chào, {user.fullname || "Người dùng"}
-                </span>
+                </Link>
+
                 <button
                   onClick={handleLogout}
                   className="px-4 py-2 border border-red-600 text-red-600 rounded-full hover:bg-red-100 transition"

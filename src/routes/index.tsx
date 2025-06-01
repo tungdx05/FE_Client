@@ -4,6 +4,7 @@ import HomePage from "../components/common/HomePage";
 import LoginForm from "../components/auth/LoginForm";
 import RegisterForm from "../components/auth/RegisterForm";
 import ForgotPasswordForm from '../components/auth/ForgotPasswordForm';
+import ProfilePage from "../components/profile/ProfilePage";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -13,6 +14,7 @@ const router = createBrowserRouter([
       { path: "products", element: <div>Trang sản phẩm</div> },
       { path: "about", element: <div>Trang giới thiệu</div> },
       { path: "contact", element: <div>Trang liên hệ</div> },
+       { path: "profile", element: <ProfilePage /> },
     ],
   },
   {
@@ -23,13 +25,13 @@ const router = createBrowserRouter([
     path: "/register",
     element: <RegisterForm />,
   },
- feature/login
+
 
   {
   path: "/forgot-password",
   element: <ForgotPasswordForm />,
 },
- develop
+
 ]);
 
 export default router;
