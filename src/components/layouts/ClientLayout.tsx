@@ -32,24 +32,24 @@ const ClientLayout: React.FC = () => {
             </Link>
           </div>
 
-          {/* Navigation */}
-          <nav className="flex justify-center space-x-6 text-sm md:text-base">
-            <Link to="/" className="hover:text-purple-700">
-              Trang chủ
-            </Link>
-            <Link to="/products" className="hover:text-purple-700">
-              Sản phẩm
-            </Link>
-            <Link to="/about" className="hover:text-purple-700">
-              Giới thiệu
-            </Link>
-            <Link to="/contact" className="hover:text-purple-700">
-              Liên hệ
-            </Link>
-          </nav>
+          {/* Search Bar */}
+          <div>
+            <input
+              type="text"
+              placeholder="Tìm kiếm sản phẩm..."
+              className="w-full max-w-md px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-purple-500"
+            />
+          </div>
 
-          {/* User menu */}
+          {/* User menu + Giỏ hàng */}
           <div className="flex justify-end items-center space-x-4 pl-6">
+            <Link
+              to="/cart"
+              className="hover:text-purple-700 flex items-center space-x-1 mr-4"
+            >
+              <span role="img" aria-label="cart">🛒</span>
+            </Link>
+
             {user ? (
               <>
                 <Link
@@ -83,6 +83,24 @@ const ClientLayout: React.FC = () => {
               </>
             )}
           </div>
+        </div>
+
+        {/* Navigation */}
+        <div className="container mx-auto px-6 py-2">
+          <nav className="flex justify-center space-x-6 text-sm md:text-base">
+            <Link to="/" className="hover:text-purple-700">
+              Trang chủ
+            </Link>
+            <Link to="/products" className="hover:text-purple-700">
+              Sản phẩm
+            </Link>
+            <Link to="/about" className="hover:text-purple-700">
+              Giới thiệu
+            </Link>
+            <Link to="/contact" className="hover:text-purple-700">
+              Liên hệ
+            </Link>
+          </nav>
         </div>
       </header>
 
