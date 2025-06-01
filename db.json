@@ -4,11 +4,7 @@
       "id": "1",
       "username": "dat123",
       "email": "dat@gmail.com",
- feature/login
-      "password": "hashed_pwd",
-
       "password": "123456",
- develop
       "first_name": "Dat",
       "last_name": "Nguyen",
       "phone_number": "0123456789",
@@ -23,6 +19,18 @@
       "fullname": "Đặng Xuân Tùng",
       "email": "tungdx50725@gmail.com",
       "password": "123456"
+    },
+    {
+      "id": "90cb",
+      "fullname": "user123",
+      "email": "user123@gmail.com",
+      "password": "user123"
+    },
+    {
+      "id": "5972",
+      "fullname": "abc",
+      "email": "hunganh15610@gmail.com",
+      "password": "anhphat1560"
     }
   ],
   "user_addresses": [
