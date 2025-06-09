@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 
 const ClientLayout: React.FC = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState<{ fullname?: string } | null>(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isShopDropdownOpen, setIsShopDropdownOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
@@ -21,21 +23,55 @@ const ClientLayout: React.FC = () => {
     navigate("/login");
   };
 
+  // Đóng dropdown khi click ra ngoài
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsShopDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   return (
     <div className="bg-white text-gray-800 min-h-screen flex flex-col">
       {/* Header */}
-      <header className="shadow-md">
-        <div className="container w-full max-w-screen-xl mx-auto px-6 py-3 flex flex-wrap items-center justify-between">
+      <header className="shadow-md mb-5">
+        <div className="container w-full max-w-screen-xl mx-auto px-6 py-3 flex items-center justify-between">
           {/* Logo */}
           <div className="flex-shrink-0">
             <Link to="/">
-              <img src="/src/assets/images/Logo-bgremove.png" alt="SHOP.CO Logo" className="h-8 w-auto" />
+              <img src="/src/assets/images/Logo-bgremove.png" alt="SHOP.CO Logo" className="h-12 w-auto object-contain" />
             </Link>
           </div>
 
           {/* Navigation */}
-          <nav className="hidden md:flex space-x-8 text-sm md:text-base text-blue-600 md:ml-5">
-            <Link to="/shop" className="hover:text-purple-700">Shop</Link>
+          <nav className="flex items-center space-x-8 text-sm md:text-base text-blue-600 md:ml-5">
+            <div className="relative inline-block">
+              <button className="hover:text-purple-700 flex items-center" onClick={() => setIsShopDropdownOpen(!isShopDropdownOpen)}>
+                Shop <span className="ml-1">▼</span>
+              </button>
+              {isShopDropdownOpen && (
+                <div
+                  ref={dropdownRef}
+                  className="absolute left-0 top-full mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg z-10"
+                >
+                  <Link to="/shop" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" onClick={() => setIsShopDropdownOpen(false)}>
+                    Casual
+                  </Link>
+                  <Link to="/shop" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" onClick={() => setIsShopDropdownOpen(false)}>
+                    Formal
+                  </Link>
+                  <Link to="/shop" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" onClick={() => setIsShopDropdownOpen(false)}>
+                    Sport
+                  </Link>
+                </div>
+              )}
+            </div>
             <Link to="/on-sale" className="hover:text-purple-700">On Sale</Link>
             <Link to="/new-arrivals" className="hover:text-purple-700">New Arrivals</Link>
             <Link to="/brands" className="hover:text-purple-700">Brands</Link>
@@ -85,16 +121,6 @@ const ClientLayout: React.FC = () => {
               </svg>
             </button>
           </div>
-        </div>
-
-        {/* Mobile Menu (Dropdown) */}
-        <div className={`md:hidden ${isMenuOpen ? 'block' : 'hidden'} bg-white shadow-md`}>
-          <nav className="flex flex-col space-y-2 p-4">
-            <Link to="/shop" className="text-blue-600 hover:text-purple-700" onClick={() => setIsMenuOpen(false)}>Shop</Link>
-            <Link to="/on-sale" className="text-blue-600 hover:text-purple-700" onClick={() => setIsMenuOpen(false)}>On Sale</Link>
-            <Link to="/new-arrivals" className="text-blue-600 hover:text-purple-700" onClick={() => setIsMenuOpen(false)}>New Arrivals</Link>
-            <Link to="/brands" className="text-blue-600 hover:text-purple-700" onClick={() => setIsMenuOpen(false)}>Brands</Link>
-          </nav>
         </div>
       </header>
 

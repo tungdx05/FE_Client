@@ -3,9 +3,12 @@ import ClientLayout from "../components/layouts/ClientLayout";
 import HomePage from "../components/common/HomePage";
 import LoginForm from "../components/auth/LoginForm";
 import RegisterForm from "../components/auth/RegisterForm";
-import ForgotPasswordForm from '../components/auth/ForgotPasswordForm';
+import ForgotPasswordForm from "../components/auth/ForgotPasswordForm";
 import ProfilePage from "../components/profile/ProfilePage";
 import CartPage from "../pages/CartPage";
+import CheckoutPage from "../pages/CheckoutPage";
+import CategoryPage from "../pages/CategoryPage"; 
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -15,8 +18,10 @@ const router = createBrowserRouter([
       { path: "products", element: <div>Trang sản phẩm</div> },
       { path: "about", element: <div>Trang giới thiệu</div> },
       { path: "contact", element: <div>Trang liên hệ</div> },
-       { path: "profile", element: <ProfilePage /> },
-       { path: "cart", element: <CartPage/>},
+      { path: "profile", element: <ProfilePage /> },
+      { path: "cart", element: <CartPage /> },
+      { path: "checkout", element: <CheckoutPage /> },
+      { path: "shop", element: <CategoryPage /> },
     ],
   },
   {
@@ -27,13 +32,10 @@ const router = createBrowserRouter([
     path: "/register",
     element: <RegisterForm />,
   },
-
-
   {
-  path: "/forgot-password",
-  element: <ForgotPasswordForm />,
-},
-
+    path: "/forgot-password",
+    element: <ForgotPasswordForm />,
+  },
 ]);
 
 export default router;
