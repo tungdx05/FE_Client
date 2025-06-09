@@ -1,8 +1,11 @@
 import React, { useEffect, useState, useRef } from "react";
-import { Link, Outlet, useNavigate } from "react-router-dom";
+import { Link, Outlet, useNavigate, useLocation } from "react-router-dom";
+import Banner from "../common/Banner";
+import Footer from "../common/Footer";
 
 const ClientLayout: React.FC = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [user, setUser] = useState<{ fullname?: string } | null>(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isShopDropdownOpen, setIsShopDropdownOpen] = useState(false);
@@ -23,14 +26,12 @@ const ClientLayout: React.FC = () => {
     navigate("/login");
   };
 
-  // Đóng dropdown khi click ra ngoài
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
         setIsShopDropdownOpen(false);
       }
     };
-
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
@@ -45,14 +46,21 @@ const ClientLayout: React.FC = () => {
           {/* Logo */}
           <div className="flex-shrink-0">
             <Link to="/">
-              <img src="/src/assets/images/Logo-bgremove.png" alt="SHOP.CO Logo" className="h-12 w-auto object-contain" />
+              <img
+                src="/src/assets/images/Logo-bgremove.png"
+                alt="SHOP.CO Logo"
+                className="h-12 w-auto object-contain"
+              />
             </Link>
           </div>
 
           {/* Navigation */}
-          <nav className="flex items-center space-x-8 text-sm md:text-base text-blue-600 md:ml-5">
+          <nav className="hidden md:flex items-center space-x-8 text-sm md:text-base text-blue-600 ml-5">
             <div className="relative inline-block">
-              <button className="hover:text-purple-700 flex items-center" onClick={() => setIsShopDropdownOpen(!isShopDropdownOpen)}>
+              <button
+                className="hover:text-purple-700 flex items-center"
+                onClick={() => setIsShopDropdownOpen(!isShopDropdownOpen)}
+              >
                 Shop <span className="ml-1">▼</span>
               </button>
               {isShopDropdownOpen && (
@@ -78,7 +86,7 @@ const ClientLayout: React.FC = () => {
           </nav>
 
           {/* Search Bar */}
-          <div className="flex-grow md:flex-none md:ml-12 mt-4 md:mt-0">
+          <div className="flex-grow md:flex-none ml-12 mt-4 md:mt-0">
             <input
               type="text"
               placeholder="Search for products..."
@@ -88,7 +96,7 @@ const ClientLayout: React.FC = () => {
 
           {/* User Actions */}
           <div className="flex items-center space-x-3 mt-4 md:mt-0">
-            <Link to="/cart" className="hover:text-purple-700 text-gray-600 md:ml-3">
+            <Link to="/cart" className="hover:text-purple-700 text-gray-600 ml-3">
               <span role="img" aria-label="cart">🛒</span>
             </Link>
 
@@ -117,24 +125,33 @@ const ClientLayout: React.FC = () => {
           <div className="md:hidden mt-4">
             <button className="focus:outline-none" onClick={() => setIsMenuOpen(!isMenuOpen)}>
               <svg className="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7" />
               </svg>
             </button>
           </div>
         </div>
+
+        {/* Mobile Menu */}
+        <div className={`md:hidden ${isMenuOpen ? "block" : "hidden"} bg-white shadow-md`}>
+          <nav className="flex flex-col space-y-2 p-4">
+            <Link to="/shop" className="text-blue-600 hover:text-purple-700" onClick={() => setIsMenuOpen(false)}>Shop</Link>
+            <Link to="/on-sale" className="text-blue-600 hover:text-purple-700" onClick={() => setIsMenuOpen(false)}>On Sale</Link>
+            <Link to="/new-arrivals" className="text-blue-600 hover:text-purple-700" onClick={() => setIsMenuOpen(false)}>New Arrivals</Link>
+            <Link to="/brands" className="text-blue-600 hover:text-purple-700" onClick={() => setIsMenuOpen(false)}>Brands</Link>
+          </nav>
+        </div>
       </header>
 
-      {/* Main content */}
+      {/* Hiển thị Banner chỉ ở trang chủ */}
+      {location.pathname === "/" && <Banner />}
+
+      {/* Nội dung chính */}
       <main className="flex-grow">
         <Outlet />
       </main>
 
       {/* Footer */}
-      <footer className="bg-gray-100 py-6">
-        <div className="container mx-auto max-w-screen-xl px-6 text-center text-sm text-gray-600">
-          © {new Date().getFullYear()} Slyout. All rights reserved.
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 };
