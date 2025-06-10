@@ -66,7 +66,7 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
         src={product.image}
         alt={product.name}
         style={{ width: "100%", height: 180, objectFit: "cover", cursor: "pointer" }}
-        onClick={() => navigate(`/product/${product.id}`)} // 👈 Click ảnh cũng chuyển trang
+        onClick={() => navigate(`/products/${product.id}`)} // 👈 Click ảnh cũng chuyển trang
       />
       <Box sx={{ p: 2, flexGrow: 1, display: "flex", flexDirection: "column" }}>
         <Typography
