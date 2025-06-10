@@ -11,6 +11,10 @@ const ClientLayout: React.FC = () => {
   const [isShopDropdownOpen, setIsShopDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
+  // Ẩn banner nếu là trang chi tiết sản phẩm hoặc trang giỏ hàng
+  const isHiddenBannerPage =
+    /^\/products\/[^/]+$/.test(location.pathname) || location.pathname === "/cart";
+
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
     if (!storedUser) {
@@ -142,8 +146,8 @@ const ClientLayout: React.FC = () => {
         </div>
       </header>
 
-      {/* Hiển thị Banner chỉ ở trang chủ */}
-      {location.pathname === "/" && <Banner />}
+      {/* Hiển thị Banner nếu không thuộc các trang cần ẩn */}
+      {!isHiddenBannerPage && <Banner />}
 
       {/* Nội dung chính */}
       <main className="flex-grow">

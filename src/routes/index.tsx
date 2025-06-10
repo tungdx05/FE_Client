@@ -7,7 +7,8 @@ import ForgotPasswordForm from "../components/auth/ForgotPasswordForm";
 import ProfilePage from "../components/profile/ProfilePage";
 import CartPage from "../pages/CartPage";
 import CheckoutPage from "../pages/CheckoutPage";
-import CategoryPage from "../pages/CategoryPage"; 
+import CategoryPage from "../pages/CategoryPage";
+import ProductDetail from "../components/products/ProductDetailPage";
 
 const router = createBrowserRouter([
   {
@@ -16,6 +17,7 @@ const router = createBrowserRouter([
     children: [
       { path: "", element: <HomePage /> },
       { path: "products", element: <div>Trang sản phẩm</div> },
+      { path: "products/:id", element: <ProductDetail /> },
       { path: "about", element: <div>Trang giới thiệu</div> },
       { path: "contact", element: <div>Trang liên hệ</div> },
       { path: "profile", element: <ProfilePage /> },
